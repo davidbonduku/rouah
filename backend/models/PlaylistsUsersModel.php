@@ -6,7 +6,7 @@
  * Date: 24/10/2015
  * Time: 18:53
  */
-class PlaylistsUsersModel
+class PlaylistsUsersModel extends CoreModel
 {
 
 }
