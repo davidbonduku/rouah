@@ -31,7 +31,7 @@ class CoreController
     {
         extract($viewData);
 
-        require ROOT.'views'.DS.$viewData["viewFileName"].'.php';
+        require ROOT.'views'.DS.$viewData['viewFileName'].'.php';
     }
     /**
      * Permet de convertir en JSON
