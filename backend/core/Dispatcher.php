@@ -2,7 +2,7 @@
 
 /**
  * Class Dispatcher
- * Dispatcheur de requette
+ * Dispatcheur des requêtes
  */
 class Dispatcher
 {
@@ -43,7 +43,7 @@ class Dispatcher
     }
 
     /**
-     * Permet de récupérer la requete
+     * Permet de récupérer la requête
      */
     private function _doRequest()
     {
