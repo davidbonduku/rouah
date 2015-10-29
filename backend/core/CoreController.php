@@ -19,9 +19,9 @@ class CoreController
     public function _setView(array $data)
     {
         $this->_loadView(array(
-                                'viewFileName' => $data["view"],
-                                "content" => $data['content'])
-        );
+                                'viewFileName' => $data['view'],
+                                'content' => $data['content']
+        ));
     }
     /**
      * Permet de charger la vue
@@ -30,7 +30,6 @@ class CoreController
     private function _loadView(array $viewData)
     {
         extract($viewData);
-
         require ROOT.'views'.DS.$viewData['viewFileName'].'.php';
     }
     /**
