@@ -14,11 +14,10 @@
       */
      static function loadController($controllerName)
      {
-               if( self::_checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
-                {
-                       self::loadModel( $controllerName );
-                }
-         require ROOT.'controllers'.DS.$controllerName.'.php';
+        if( self::_checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
+            {
+                self::loadModel( $controllerName );
+             }
      }
      /**
       * Permet de passer les données à la vue
@@ -92,7 +91,7 @@
      {
              if(file_exists($fileName))
                  {
-                     require_once $fileName;
+                     require $fileName;
 
                      return true;
          }
