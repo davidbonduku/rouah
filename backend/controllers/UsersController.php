@@ -5,12 +5,17 @@ class UsersController extends CoreController
 
     public function get($id)
     {
-        echo "je recupére l'information à partir de l'ID ".$id;
+        $this->_setView(array(
+            'view' => 'index',
+            'content' => $this->_convertToJson(self::$_currentModel->get(intval($id)))
+        ));
     }
-
     public function getAll()
     {
-        echo "je suis sur cette zone,je recupére toutes les informations";
+        $this->_setView(array(
+            'view' => 'index',
+            'content' => $this->_convertToJson(self::$_currentModel->getAll())
+        ));
     }
 
     public function add()

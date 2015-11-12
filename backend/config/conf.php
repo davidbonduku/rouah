@@ -1,12 +1,17 @@
 <?php
 
-class Conf
-{
-    private $con; //variable de connexion
+/**
+ * CONFIGURATIONS DE L'APPLICATION
+ */
+    BDDConnexion::config(array(
+        'host' => 'localhost',
+        'dbname' => 'bddmusique',
+        'username' => 'root',
+        'password' => '',
+        'debug' => true
+    ));
 
-    public function __construct()
-    {
-        $db = connexion::getInstance();
-        $this->con = $db->getDbh();
-    }
-}
+    Application::config(array(
+        'mode' => 'production',
+        'debug' => true
+    ));
