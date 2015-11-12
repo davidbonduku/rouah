@@ -10,7 +10,7 @@ class Application
         'debug' => true
     );
     /**
-     * Permet d'executer l'application ---i'm here
+     * Permet d'executer l'application
      */
     public static function run()
     {
