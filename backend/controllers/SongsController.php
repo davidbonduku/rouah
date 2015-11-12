@@ -9,19 +9,20 @@ class SongsController extends CoreController
 {
     public function get($id)
     {
-        $this->_setView(array(
+        /*$this->_setView(array(
             'view' => 'index',
             'content' => 'Récupére la chanson dont le ID est '.$id
-        ));
-
+        ));*/
+        print_r(self::$_currentModel->get($id));
     }
 
-    public function all()
+    public function getAll()
     {
         $this->_setView(array(
             'view' => 'index',
             'content' => 'Récupérons toutes les chansons'
         ));
+        print_r(self::$_currentModel->getAll());
 
     }
 

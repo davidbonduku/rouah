@@ -1,16 +1,21 @@
 <?php
-
+/**
+ * Class CoreController
+ */
 class CoreController
 {
+    protected static $_currentModel;
     /**
-     * Permet de charger un controlleur
+     * Permet de charger un contrôleur et d'instancier son modèle associé
      * @param $controllerName
      * @return mixed
      */
-
    static function loadController($controllerName)
     {
-        require ROOT.'controllers'.DS.$controllerName.'.php';
+        if( self::_checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
+        {
+            self::loadModel( $controllerName );
+        }
     }
     /**
      * Permet de passer les données à la vue
@@ -19,8 +24,8 @@ class CoreController
     public function _setView(array $data)
     {
         $this->_loadView(array(
-                                'viewFileName' => $data["view"],
-                                "content" => $data['content'])
+                                'viewFileName' => $data['view'],
+                                'content' => $data['content'])
         );
     }
     /**
@@ -29,9 +34,10 @@ class CoreController
      */
     private function _loadView(array $viewData)
     {
+        ob_start();
         extract($viewData);
-
-        require ROOT.'views'.DS.$viewData["viewFileName"].'.php';
+        require_once ROOT.'views'.DS.$viewData['viewFileName'].'.php';
+        ob_clean();
     }
     /**
      * Permet de convertir en JSON
@@ -60,5 +66,32 @@ class CoreController
                  return file_get_contents('php://input');
          }
         return;
+    }
+    /**
+     * Permet de charger le modèle
+     * @param $modelName
+     */
+    static function loadModel($modelName)
+    {
+        if(self::_checkFileAndLoad(ROOT.'models'.DS.$modelName.'Model.php'))
+        {
+            $currentModel = $modelName.'Model';
+            self::$_currentModel = new $currentModel();
+        }
+    }
+    /**
+     * Verifie si le fichier existe et le charge
+     * @param $fileName
+     * @return bool
+     */
+    private static function _checkFileAndLoad( $fileName )
+    {
+        if(file_exists($fileName))
+        {
+            require_once $fileName;
+
+            return true;
+        }
+        return false;
     }
 }

@@ -1,12 +1,29 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: davidbondukupieme
- * Date: 22/10/15
- * Time: 18:34
- */
+
 class PlaylistsUsersController extends CoreController
 {
+    public function get($id)
+    {
 
+    }
+
+    public function getAll()
+    {
+
+    }
+
+    public function add()
+    {
+
+    }
+
+    public function update($id)
+    {
+
+    }
+    public function remove($id)
+    {
+
+    }
 }

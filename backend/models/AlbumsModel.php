@@ -1,12 +1,29 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: David
- * Date: 24/10/2015
- * Time: 18:51
+ * Class AlbumsModel
  */
 class AlbumsModel extends CoreModel
 {
+    public function getAll()
+    {
 
+    }
+    public function get($id)
+    {
+
+    }
+    public function add(array $data)
+    {
+
+    }
+
+    public function update(array $data)
+    {
+
+    }
+    public function remove($id)
+    {
+
+    }
 }

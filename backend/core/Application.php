@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Application
+ */
 class Application
 {
     private static $_config = array(
@@ -16,7 +19,7 @@ class Application
         $slim = new \Slim\Slim(
             self::$_config
         );
-        new Dispatcher(new Router($slim));
+        DispatcherFactory::dispach(new Router($slim));
     }
     /**
      * Permet de configurer le mode de fonctionnement de l'application

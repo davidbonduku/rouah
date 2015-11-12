@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Router
+ */
 class Router
 {
     private $_app,
@@ -7,7 +10,10 @@ class Router
         $_currentController,
         $_request,
         $_action;
-
+    /**
+     * Constructeur
+     * @param $app
+     */
     public function __construct($app)
     {
         $this->_app = $app;
@@ -36,7 +42,7 @@ class Router
     private function _addController()
     {
         $this->_currentController = ucwords($this->_request[0].'Controller');
-        CoreController::loadController($this->_currentController);
+        CoreController::loadController($this->_request[0]);
         return $this;
     }
     /**
@@ -45,8 +51,14 @@ class Router
      */
     private function _doAction(array $data)
     {
-        $controller = new $this->_currentController();
-        call_user_func_array(array($controller,$this->_currentMethod),$data);
+        if(class_exists($this->_currentController))
+        {
+            $controller = new $this->_currentController();
+            call_user_func_array(array($controller,$this->_currentMethod),$data);
+        }
+        else{
+            print_r(" Erreur cette ressource n'existe pas ");
+        }
     }
     /**
      * Permet d'ajouter une action

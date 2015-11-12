@@ -1,19 +1,29 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: davidbondukupieme
- * Date: 22/10/15
- * Time: 18:24
- */
 class UsersController extends CoreController
 {
 
+    public function get($id)
+    {
+        echo "je recupére l'information à partir de l'ID ".$id;
+    }
+
     public function getAll()
     {
-        $this->_setView(array(
-            'view' => 'index',
-            'content' => 'Tout les utilisateurs seront affichÃ©s ici'
-        ));
+        echo "je suis sur cette zone,je recupére toutes les informations";
+    }
+
+    public function add()
+    {
+
+    }
+
+    public function update($id)
+    {
+
+    }
+    public function remove($id)
+    {
+
     }
 }

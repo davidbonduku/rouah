@@ -8,7 +8,6 @@ Application::config(array(
     'mode' => 'production',
     'debug' => true
 ));
-
 /**
  * Execution de l'application
  */

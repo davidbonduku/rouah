@@ -2,7 +2,7 @@
 
 /**
  * Class Dispatcher
- * Dispatcheur de requette
+ * Dispatcheur de requête
  */
 class Dispatcher
 {
@@ -61,7 +61,6 @@ class Dispatcher
         }
         return $this;
     }
-
     /**
      * Permet de faire le dispatching
      */
