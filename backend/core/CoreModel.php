@@ -8,13 +8,5 @@
  */
 class CoreModel
 {
-    static function getAll()
-    {
-        return "Je suis avec Ibrahim, nous bossons sur PHP en version Pro";
-    }
 
-    static function getUserId()
-    {
-        return uniqid();
-    }
 }
