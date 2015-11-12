@@ -5,7 +5,7 @@ class BDDConnexion
      * Instance de la classe connexion
      * @access private
      * @var connexion
-     * @see getInstance
+     * @see _getInstance
      */
     private static $_instance;
 
@@ -82,7 +82,7 @@ class BDDConnexion
      * sinon il en créer un autre.
      * @return $instance
      */
-    private static function getInstance()
+    private static function _getInstance()
     {
         if (!self::$_instance instanceof self)
         {
@@ -161,7 +161,7 @@ class BDDConnexion
      */
     public static function getDbh()
     {
-        self::getInstance();
+        self::_getInstance();
         return self::$_dbh;
     }
 }
