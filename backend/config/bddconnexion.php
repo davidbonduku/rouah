@@ -4,8 +4,8 @@ class BDDConnexion
     /**
      * Instance de la classe connexion
      * @access private
-     * @var connexion
-     * @see _getInstance
+     * @var string
+     * @see getInstance
      */
     private static $_instance;
 
@@ -25,7 +25,7 @@ class BDDConnexion
      */
     private static $_host = "localhost";
     /**
-     * Nom de la base de donnée.
+     * Nom de la base de données.
      * @access private
      * @var string
      * @see __construct
@@ -40,13 +40,14 @@ class BDDConnexion
     private  static $_username = "root";
     /**
      * Mot de passe pour la connexion à la base de donnée
-     * @access private
+     * @access +
+     * private
      * @var string
      * @see __construct
      */
     private static $_password = 'root';
 
-    private static $_dbh;
+    private  $_dbh;
 
     private static $_debug = false;
     /**
@@ -57,16 +58,15 @@ class BDDConnexion
     private  function __construct()
     {
         try{
-                self::$_dbh = new PDO(
+                $this->_dbh = new PDO(
                     $this->_type.':host='.self::$_host.'; dbname='.self::$_dbname,
                     self::$_username,
                     self::$_password,
                     array(PDO::ATTR_PERSISTENT => true)
                 );
             $req = "SET NAMES UTF8";
-            $result = self::$_dbh->prepare($req);
+            $result = $this->_dbh->prepare($req);
             $result->execute();
-
         }
         catch(PDOException $e){
             if(self::$_debug)
@@ -80,9 +80,9 @@ class BDDConnexion
      * Regarde si un objet connexion a déjà été instancier,
      * si c'est le cas alors il retourne l'objet déjà existant
      * sinon il en créer un autre.
-     * @return $instance
+     * @return mixed
      */
-    private static function _getInstance()
+    public static function getInstance()
     {
         if (!self::$_instance instanceof self)
         {
@@ -90,7 +90,6 @@ class BDDConnexion
         }
         return self::$_instance;
     }
-
     /**
      * Permet de configuration la connexion à la base de données
      * @param array $conf
@@ -102,7 +101,6 @@ class BDDConnexion
         self::_setUsername($conf);
         self::_setPassword($conf);
         self::_setDebug($conf);
-
     }
     /**
      * @param array $conf
@@ -124,7 +122,6 @@ class BDDConnexion
             self::$_dbname = $conf['dbname'];
         }
     }
-
     /**
      * @param array $conf
      */
@@ -156,12 +153,11 @@ class BDDConnexion
         }
     }
     /**
-     * Permet de récuperer l'objet PDO permettant de manipuler la base de donnée
-     * @return $dbh
+     * Permet de récuperer l'objet PDO permettant de manipuler la base de données
+     * @return mixed
      */
-    public static function getDbh()
+    public function getDbh()
     {
-        self::_getInstance();
-        return self::$_dbh;
+        return $this->_dbh;
     }
 }
