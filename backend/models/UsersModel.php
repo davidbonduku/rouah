@@ -2,7 +2,8 @@
 
 class UsersModel extends CoreModel
 {
-    protected $_table = "users";
+    protected $_table = "user";
+    protected $_id = 'idUser';
 
     public function getAll()
     {
