@@ -7,7 +7,7 @@ class CoreModel
 
     public function __construct()
     {
-        $this->_db = BDDConnexion::getDbh();
+        $this->_db = BDDConnexion::getInstance()->getDbh();
     }
 
     /**

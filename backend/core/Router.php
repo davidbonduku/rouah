@@ -17,6 +17,7 @@ class Router
     public function __construct($app)
     {
         $this->_app = $app;
+        $this->_notFound();
     }
     /**
      * @param $httpMethod
@@ -58,9 +59,11 @@ class Router
            call_user_func_array(array($controller,$this->_currentMethod),$data);
         }
         else{
-            print_r(" Erreur cette ressource n'existe pas ");
+            AppException::show(array(
+                'message' => "Erreur cette ressource n'existe pas",
+                'code' => 104
+            ));
         }
-
     }
     /**
      * Permet d'ajouter une action
@@ -89,10 +92,23 @@ class Router
         return $this;
     }
     /**
-     * Permet d'executer la requete
+     * Permet d'executer la requête
      */
     public function run()
     {
         $this->_app->run();
+    }
+
+    /**
+     * Permet d'afficher un message d'erreur 404
+     */
+    private function _notFound()
+    {
+        $this->_app->notFound(function(){
+            AppException::show(array(
+                'message' => "Erreur cette ressource n'existe pas",
+                'code' => 404
+            ));
+        });
     }
 }

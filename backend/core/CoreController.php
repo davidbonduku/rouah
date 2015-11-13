@@ -6,6 +6,7 @@
  class CoreController
  {
      protected static $_currentModel;
+     private static $_currentController;
      /**
       * Permet de charger un contrôleur et d'instancier son modèle associé
       * Permet de charger un controlleur
@@ -15,9 +16,10 @@
      static function loadController($controllerName)
      {
         if( self::_checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
-            {
+        {
+                self::$_currentController = strtolower($controllerName);
                 self::loadModel( $controllerName );
-             }
+        }
      }
      /**
       * Permet de passer les données à la vue
@@ -38,18 +40,20 @@
      {
          ob_start();
          extract($viewData);
-         require_once ROOT.'views'.DS.$viewData['viewFileName'].'.php';
          ob_clean();
-         require ROOT.'views'.DS.$viewData["viewFileName"].'.php';
+         require_once ROOT.'views'.DS.$viewData['viewFileName'].'.php';
+
      }
      /**
       * Permet de convertir en JSON
-      * @param $data
+      * @param array $data
       * @return string
       */
-     protected function _convertToJson($data)
+     protected function _convertToJson( array $data )
      {
-         return json_encode($data);
+         return json_encode(array(
+             self::$_currentController => $data
+         ));
      }
      /**
       * Permet de récupérer les données distantes
@@ -89,12 +93,11 @@
       */
      private static function _checkFileAndLoad( $fileName )
      {
-             if(file_exists($fileName))
-                 {
-                     require $fileName;
-
-                     return true;
+         if(file_exists($fileName))
+         {
+             require $fileName;
+             return true;
          }
-          return false;
+         return false;
      }
  }
