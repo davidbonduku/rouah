@@ -17,7 +17,7 @@ final class AppException
         self::_setError( $data );
     }
     /**
-     * Permet de préparer les données
+     * Permet de prï¿½parer les donnï¿½es
      * @param array $errorData
      */
     private static function _setError(array $errorData)
@@ -27,7 +27,7 @@ final class AppException
             'content' => json_encode( array(
                 'error' => array(
                     'message' => $errorData['message'],
-                    'type' => 'AppException',
+                    'type' => (empty($errorData['type'])) ? 'AppException': $errorData['type'],
                     'code' => $errorData['code']
                 )))));
     }

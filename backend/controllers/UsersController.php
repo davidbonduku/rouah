@@ -2,7 +2,9 @@
 
 class UsersController extends CoreController
 {
-
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         $this->_setView(array(
@@ -10,6 +12,10 @@ class UsersController extends CoreController
             'content' => $this->_convertToJson(self::$_currentModel->get(intval($id)))
         ));
     }
+
+    /**
+     *
+     */
     public function getAll()
     {
         $this->_setView(array(
@@ -17,12 +23,17 @@ class UsersController extends CoreController
             'content' => $this->_convertToJson(self::$_currentModel->getAll())
         ));
     }
-
+    /**
+     *
+     */
     public function add()
     {
-
+        self::$_currentModel->add($this->_getHttpData());
     }
 
+    /**
+     * @param $id
+     */
     public function update($id)
     {
 

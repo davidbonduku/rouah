@@ -36,4 +36,26 @@ class CoreModel
         return $res->fetchAll(PDO::FETCH_OBJ);
     }
 
+    /**
+     * Permet d'ajouter les données
+     * @param array $data
+     */
+    protected function _add(array $data)
+    {
+       $sql = "INSERT INTO $this->_table  (";
+
+        $sqlSuite= " VALUES (";
+
+        foreach( $data as $key => $value )
+        {
+             $sql .= $key.',';
+            $sqlSuite.= ':'.$key.',';
+        }
+        $partOneSql = substr($sql,0,-1).')';
+        $partTwoSql = substr($sqlSuite,0,-1).')';
+
+        echo $partOneSql.$partTwoSql;
+
+    }
+
 }

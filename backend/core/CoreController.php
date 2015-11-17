@@ -70,7 +70,7 @@
                  return $_GET;
                  break;
              case 'PUT':
-                 return file_get_contents('php://input');
+                 return fopen('php://input','r');
          }
          return;
      }
