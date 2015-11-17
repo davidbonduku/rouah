@@ -5,9 +5,9 @@
  */
     BDDConnexion::config(array(
         'host' => 'localhost',
-        'dbname' => 'bddmusique',
+        'dbname' => 'bddMusique',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root',
         'debug' => true
     ));
 

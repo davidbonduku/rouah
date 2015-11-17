@@ -2,7 +2,6 @@
 
 /**
  * Class SongsController
- *
  */
 
 class SongsController extends CoreController
