@@ -22,6 +22,7 @@ spl_autoload_register(function($class){
         require_once ROOT.'config/'.$class.'.php';
     }else {
         require_once ROOT.'libs/Slim/Slim.php';
+        require_once ROOT.'libs/Doctrine/Doctrine/Common/ClassLoader.php';
     }
 });
 

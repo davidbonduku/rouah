@@ -36,33 +36,26 @@ class CoreModel
         return $res->fetchAll(PDO::FETCH_OBJ);
     }
 
+    /**
+     * Permet d'ajouter les données
+     * @param array $data
+     */
     protected function _add(array $data)
     {
-        if(sizeof($data) == 0 )
+       $sql = "INSERT INTO $this->_table  (";
+
+        $sqlSuite= " VALUES (";
+
+        foreach( $data as $key => $value )
         {
-            AppException::show(array(
-                'message'=> "Impossible d'ajouter données",
-                'type'=> "DataModelException",
-                'code'=> 209
-            ));
-
-        }else{
-                 $sql = "INSERT INTO $this->_table (";
-
-                 $sqlTemp = ""; $valuesTemp = "";
-
-                foreach($data as $key=>$value){
-
-                    $sqlTemp.=$key.",";
-
-                    $valuesTemp.=":".$key.",";
-                }
-
-                $request = $this->_db->prepare( $sql.substr($sqlTemp,0,-1).")
-
-                                               VALUES (".substr($valuesTemp,0,-1).")"
-                );
-                $request->execute($data);
+             $sql .= $key.',';
+            $sqlSuite.= ':'.$key.',';
         }
+        $partOneSql = substr($sql,0,-1).')';
+        $partTwoSql = substr($sqlSuite,0,-1).')';
+
+        echo $partOneSql.$partTwoSql;
+
     }
+
 }
