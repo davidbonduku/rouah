@@ -42,6 +42,7 @@ class CoreModel
      */
     protected function _add(array $data)
     {
+        $data_final = array();
        $sql = "INSERT INTO $this->_table  (";
 
         $sqlSuite= " VALUES (";
@@ -50,11 +51,13 @@ class CoreModel
         {
              $sql .= $key.',';
             $sqlSuite.= ':'.$key.',';
+            $data_final[':'.$key] = $value;
         }
         $partOneSql = substr($sql,0,-1).')';
         $partTwoSql = substr($sqlSuite,0,-1).')';
 
-        echo $partOneSql.$partTwoSql;
+        $res = $this->_db->prepare($partOneSql.$partTwoSql);
+        $res->execute( $data_final );
 
     }
 

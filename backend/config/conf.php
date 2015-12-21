@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CONFIGURATIONS DE L'APPLICATION
  */
@@ -7,7 +6,7 @@
         'host' => 'localhost',
         'dbname' => 'bddMusique',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '',
         'debug' => true
     ));
 

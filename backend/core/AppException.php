@@ -13,6 +13,7 @@ final class AppException
      */
     public static function show(array $data)
     {
+
         self::$_core = CoreControllerFactory::create();
         self::_setError( $data );
     }

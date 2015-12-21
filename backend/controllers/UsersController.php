@@ -12,7 +12,6 @@ class UsersController extends CoreController
             'content' => $this->_convertToJson(self::$_currentModel->get(intval($id)))
         ));
     }
-
     /**
      *
      */
@@ -30,13 +29,14 @@ class UsersController extends CoreController
     {
         self::$_currentModel->add($this->_getHttpData());
     }
-
     /**
      * @param $id
      */
     public function update($id)
     {
-
+        $input = file_get_contents('php://input');
+        parse_str($input, $params);
+        print_r($input);
     }
     public function remove($id)
     {

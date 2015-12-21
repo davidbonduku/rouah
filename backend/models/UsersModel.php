@@ -29,7 +29,6 @@ class UsersModel extends CoreModel
         if(sizeof($data) > 0)
         {
              $this->_add($data);
-
         }else{
             AppException::show(array(
                 'message'=>'Impossible d\'ajouter les données, aucune donnée réçu, merci de réessayer!',
