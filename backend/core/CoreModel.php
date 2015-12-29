@@ -61,4 +61,50 @@ class CoreModel
 
     }
 
+
+    /**
+     * @param array $data
+     */
+    public function _update(array $data)
+    {
+
+        $sqlSuite = "";
+
+        foreach( $data as $key => $value )
+        {
+            $sqlSuite.=" ".$key."=:".$key."," ;
+        }
+        $partOne = substr($sqlSuite,0,-1);
+        $req = $this->_db->prepare("UPDATE $this->_table SET $partOne WHERE $this->_id =:".$this->_id);
+        $req->execute($data);
+    }
+
+
+    public function _delete(array $data)
+    {
+        $sql="DELETE FROM $this->_table WHERE ";
+        foreach ($data as $key=>$value)
+        {
+            $sql.=$key."='".$value."'";
+        }
+        $this->_db->exec($sql);
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function _get($data = array())
+    {
+        $sql = "SELECT * FROM $this->_table WHERE ";
+
+        foreach ($data as $key => $value)
+        {
+            $sql.= "".$key." = "."'". $value."'";
+        }
+        $res = $this->_db->query($sql);
+
+        return $res->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }

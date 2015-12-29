@@ -1,41 +1,59 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: ozo
- * Date: 20/11/2015
- * Time: 17:42
+ * Class OauthModel
  */
 
 class OauthModel extends CoreModel
 {
-    protected $_table = 'admin';
-    protected $_id = 'idAdmin';
+    protected $_table = 'session';
+    protected $_id = 'id';
 
+    /*
+     * ajout des données dans la table Session
+     * */
 
     public function add( array $data)
     {
-        return $this->_checking($data);
-
+         if(sizeof($data) > 0)
+         {
+             $this->_add($data);
+         }
     }
 
-    public function getAll()
-    {
-        return $this->_getAll();
+    /*
+     * Récupération du token
+     * */
 
+    public function getToken($token)
+    {
+        return $this->_get(array('token' => $token));
     }
 
-    private function _checking(array $account)
-    {
+    /*
+     * Suppression d'un token
+     * */
 
-        if($account["emailUser"]=="david@yahoo.fr" && $account ["passwordUser"]=="0000")
+    public function delete($token)
+    {
+        if(!is_null($token))
         {
-            return true;
-        } else
-        {
-            return false;
+            $this->_delete(array('token'=>$token));
         }
     }
 
+
+    /*
+     * Mise à jour des données  dans la table user
+     * */
+
+    public function update(array $data)
+    {
+      if(sizeof($data)>0)
+      {
+          $this->_update($data);
+      }
+    }
 }
 
 
