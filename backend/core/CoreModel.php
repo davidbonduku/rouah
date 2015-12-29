@@ -107,4 +107,8 @@ class CoreModel
         return $res->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function _isExist($data = array())
+    {
+
+    }
 }
