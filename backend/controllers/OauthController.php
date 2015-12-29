@@ -50,6 +50,7 @@ class OauthController extends CoreController
              )))
       {
           $userAccount = $this->_userModel->get(array('emailUser'=> $account['emailUser']));
+          print_r($userAccount);
           $this->_token = $this->_createToken();
 
           self::$_currentModel->add(array( 'token' => $this->_token,'user_id'=>@$userAccount[0]->idUser ) );
