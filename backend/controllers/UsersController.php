@@ -9,7 +9,7 @@ class UsersController extends CoreController
     {
         $this->_setView(array(
             'view' => 'index',
-            'content' => $this->_convertToJson(self::$_currentModel->get(intval($id)))
+            'content' => $this->_convertToJson(self::$_currentModel->get(array('idUser'=>intval($id))))
         ));
     }
     /**
