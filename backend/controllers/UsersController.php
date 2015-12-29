@@ -37,9 +37,10 @@ class UsersController extends CoreController
         $input = file_get_contents('php://input');
         parse_str($input, $params);
         print_r($input);
+        echo "je suis dans put";
     }
-    public function remove($id)
+    public function delete($id)
     {
-
+        echo "je suis ici";
     }
 }
