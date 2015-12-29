@@ -15,7 +15,7 @@
       */
      static function loadController($controllerName)
      {
-        if( self::_checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
+        if( self::checkFileAndLoad(ROOT.'controllers'.DS.$controllerName.'Controller.php') )
         {
                 self::$_currentController = strtolower($controllerName);
                 self::loadModel( $controllerName );
@@ -80,7 +80,7 @@
        */
       static function loadModel($modelName)
      {
-         if(self::_checkFileAndLoad(ROOT.'models'.DS.$modelName.'Model.php'))
+         if(self::checkFileAndLoad(ROOT.'models'.DS.$modelName.'Model.php'))
          {
              $currentModel = $modelName.'Model';
             self::$_currentModel = new $currentModel();
@@ -91,7 +91,7 @@
       * @param $fileName
       * @return bool
       */
-     private static function _checkFileAndLoad( $fileName )
+     public static function checkFileAndLoad( $fileName )
      {
          if(file_exists($fileName))
          {
