@@ -66,12 +66,12 @@ class UsersModel extends CoreModel
     }
 
     /**
-     * @param array $data
+     * @param $cond
      * @return bool
      */
-    public function isExist($data = array())
+    public function isExist($cond)
     {
-       return true;
+       return $this->_isExist($cond);
     }
 
 }
