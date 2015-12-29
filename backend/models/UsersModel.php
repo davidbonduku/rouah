@@ -65,4 +65,13 @@ class UsersModel extends CoreModel
         }
     }
 
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function isExist($data = array())
+    {
+       return true;
+    }
+
 }
