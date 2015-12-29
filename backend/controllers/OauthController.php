@@ -20,10 +20,9 @@ class OauthController extends CoreController
     {
         $this->_setView(array(
             'view' => 'index',
-            'content' => $this->_convertToJson($this->checkToken( $token ))
+            'content' => $this->_convertToJson(array('token'=>$this->checkToken( $token )))
         ));
     }
-
     /**
      * CheckToken
      * @param $token
