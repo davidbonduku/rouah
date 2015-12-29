@@ -13,12 +13,12 @@ class UsersModel extends CoreModel
         return $this->_getAll();
     }
     /**
-     * @param $id
+     * @param $cond array
      * @return mixed
      */
-    public function get($id)
+    public function get($cond = array())
     {
-        return $this->_getId(intval($id));
+        return $this->_get($cond);
     }
 
     /**
