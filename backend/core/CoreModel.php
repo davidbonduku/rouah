@@ -59,8 +59,8 @@ class CoreModel
         $res = $this->_db->prepare($partOneSql.$partTwoSql);
         $res->execute( $data_final );
 
+        return $this->_db->lastInsertId();
     }
-
 
     /**
      * @param array $data
