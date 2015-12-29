@@ -38,7 +38,9 @@ class OauthModel extends CoreModel
     {
         if(!is_null($token))
         {
-            $this->_delete(array('token'=>$token));
+            return $this->_delete(array('token'=>$token));
+        }else{
+            return false;
         }
     }
 

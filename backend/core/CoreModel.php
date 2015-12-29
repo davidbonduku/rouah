@@ -87,7 +87,12 @@ class CoreModel
         {
             $sql.=$key."='".$value."'";
         }
-        $this->_db->exec($sql);
+        if($this->_db->exec($sql))
+        {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

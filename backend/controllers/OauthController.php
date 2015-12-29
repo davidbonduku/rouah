@@ -157,11 +157,19 @@ class OauthController extends CoreController
     {
         if(!is_null($token))
         {
-            self::$_currentModel->delete( $token );
-            $this->_setView(array(
-                'view' => 'index',
-                'content' => $this->_convertToJson(array("message"=>"Operation succed"))
-            ));
+            if(self::$_currentModel->delete( $token ))
+            {
+                $this->_setView(array(
+                    'view' => 'index',
+                    'content' => $this->_convertToJson(array("message"=>"Operation Succeed"))
+                ));
+            }else{
+                AppException::show(array(
+                    'message' => "Token doesn't exist",
+                    'code' =>  06,
+                    'type' => 'OAuthException'
+                ));
+            }
         }
     }
 
