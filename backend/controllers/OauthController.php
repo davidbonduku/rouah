@@ -44,19 +44,31 @@ class OauthController extends CoreController
      */
     private function _checkAccount( $account )
     {
-      if($this->_userModel->isExist(array(
-             'emailUser' => $account['emailUser'],
-             'passwordUser' => $account['passwordUser']
-             )))
+        $cond = "emailUser='".$account['emailUser']."' AND ".
+                "passwordUser='".$account['passwordUser']."'";
+
+       if($this->_userModel->isExist($cond))
       {
           $userAccount = $this->_userModel->get(array('emailUser'=> $account['emailUser']));
+          $user_id = @$userAccount[0]->idUser;
           $this->_token = $this->_createToken();
 
-          self::$_currentModel->add(array( 'token' => $this->_token,'user_id'=>@$userAccount[0]->idUser ) );
-          $this->_setView(array(
-              'view' => 'index',
-              'content' => $this->_convertToJson(array('token'=>$this->_token))
-          ));
+          if(!self::$_currentModel->_isExist("user_id=".$user_id))
+          {
+              self::$_currentModel->add(array( 'token' => $this->_token,'user_id'=> $user_id ) );
+              $this->_setView(array(
+                  'view' => 'index',
+                  'content' => $this->_convertToJson(array('token'=>$this->_token))
+              ));
+          }else{
+              $lastToken = self::$_currentModel->_get(array('user_id' => $user_id));
+              $lastToken = @$lastToken[0]->token;
+              $this->_setView(array(
+                  'view' => 'index',
+                  'content' => $this->_convertToJson(array('token'=> $lastToken))
+              ));
+          }
+
       }else{
           AppException::show(array(
               'message' => 'Identifiants non reconnus',
@@ -146,6 +158,10 @@ class OauthController extends CoreController
         if(!is_null($token))
         {
             self::$_currentModel->delete( $token );
+            $this->_setView(array(
+                'view' => 'index',
+                'content' => $this->_convertToJson(array("message"=>"Operation succed"))
+            ));
         }
     }
 
